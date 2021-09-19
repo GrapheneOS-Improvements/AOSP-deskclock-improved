@@ -19,16 +19,16 @@
 
     <item
         android:state_focused="true"
-        android:drawable="@drawable/ic_tab_timer_static" />
+        android:drawable="@drawable/ic_timer" />
 
     <item
         android:id="@+id/on"
         android:state_selected="true"
-        android:drawable="@drawable/ic_tab_timer_static" />
+        android:drawable="@drawable/ic_timer" />
 
     <item
         android:id="@+id/off"
-        android:drawable="@drawable/ic_tab_timer_static" />
+        android:drawable="@drawable/ic_timer" />
 
     <transition
         android:fromId="@id/off"

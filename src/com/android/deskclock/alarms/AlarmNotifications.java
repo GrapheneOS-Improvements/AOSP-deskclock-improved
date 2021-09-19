@@ -28,7 +28,6 @@ import android.os.Build;
 import android.service.notification.StatusBarNotification;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
-import androidx.core.content.ContextCompat;
 
 import com.android.deskclock.AlarmClockFragment;
 import com.android.deskclock.AlarmUtils;
@@ -146,7 +145,7 @@ final class AlarmNotifications {
         // Setup up dismiss action
         Intent dismissIntent = AlarmStateManager.createStateChangeIntent(context,
                 AlarmStateManager.ALARM_DISMISS_TAG, instance, AlarmInstance.PREDISMISSED_STATE);
-        builder.addAction(R.drawable.ic_alarm_off_24dp,
+        builder.addAction(R.drawable.ic_alarm_off,
                 context.getString(R.string.alarm_alert_dismiss_text),
                 PendingIntent.getService(context, id,
                         dismissIntent, PendingIntent.FLAG_UPDATE_CURRENT));
@@ -196,7 +195,7 @@ final class AlarmNotifications {
         Intent dismissIntent = AlarmStateManager.createStateChangeIntent(context,
                 AlarmStateManager.ALARM_DISMISS_TAG, instance, AlarmInstance.PREDISMISSED_STATE);
         final int id = instance.hashCode();
-        builder.addAction(R.drawable.ic_alarm_off_24dp,
+        builder.addAction(R.drawable.ic_alarm_off,
                 context.getString(R.string.alarm_alert_dismiss_text),
                 PendingIntent.getService(context, id,
                         dismissIntent, PendingIntent.FLAG_UPDATE_CURRENT));
@@ -385,7 +384,7 @@ final class AlarmNotifications {
         Intent dismissIntent = AlarmStateManager.createStateChangeIntent(context,
                 AlarmStateManager.ALARM_DISMISS_TAG, instance, AlarmInstance.DISMISSED_STATE);
         final int id = instance.hashCode();
-        builder.addAction(R.drawable.ic_alarm_off_24dp,
+        builder.addAction(R.drawable.ic_alarm_off,
                 context.getString(R.string.alarm_alert_dismiss_text),
                 PendingIntent.getService(context, id,
                         dismissIntent, PendingIntent.FLAG_UPDATE_CURRENT));
@@ -484,7 +483,7 @@ final class AlarmNotifications {
         snoozeIntent.putExtra(AlarmStateManager.FROM_NOTIFICATION_EXTRA, true);
         PendingIntent snoozePendingIntent = PendingIntent.getService(service,
                 ALARM_FIRING_NOTIFICATION_ID, snoozeIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-        notification.addAction(R.drawable.ic_snooze_24dp,
+        notification.addAction(R.drawable.ic_snooze,
                 resources.getString(R.string.alarm_alert_snooze_text), snoozePendingIntent);
 
         // Setup Dismiss Action
@@ -493,7 +492,7 @@ final class AlarmNotifications {
         dismissIntent.putExtra(AlarmStateManager.FROM_NOTIFICATION_EXTRA, true);
         PendingIntent dismissPendingIntent = PendingIntent.getService(service,
                 ALARM_FIRING_NOTIFICATION_ID, dismissIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-        notification.addAction(R.drawable.ic_alarm_off_24dp,
+        notification.addAction(R.drawable.ic_alarm_off,
                 resources.getString(R.string.alarm_alert_dismiss_text),
                 dismissPendingIntent);
 

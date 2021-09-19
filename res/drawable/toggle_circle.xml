@@ -17,7 +17,7 @@
 <animated-selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/checked"
-        android:drawable="@drawable/bg_day_button_white"
+        android:drawable="@drawable/bg_day_button_animatable"
         android:state_checked="true" />
     <item
         android:id="@+id/unchecked"

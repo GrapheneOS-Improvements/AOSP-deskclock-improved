@@ -123,7 +123,7 @@ public class AlarmVolumePreference extends Preference {
     private void onSeekbarChanged() {
         mSeekbar.setEnabled(doesDoNotDisturbAllowAlarmPlayback());
         mAlarmIcon.setImageResource(mSeekbar.getProgress() == 0 ?
-                R.drawable.ic_alarm_off_24dp : R.drawable.ic_alarm_small);
+                R.drawable.ic_alarm_off : R.drawable.ic_alarm_small);
     }
 
     private boolean doesDoNotDisturbAllowAlarmPlayback() {

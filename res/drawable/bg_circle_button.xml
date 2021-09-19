@@ -16,5 +16,6 @@
   -->
 
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
-    android:shape="oval">
+    android:shape="oval"
+    android:tint="?android:attr/colorPrimary" >
 </shape>

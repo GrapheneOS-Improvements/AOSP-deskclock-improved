@@ -29,7 +29,7 @@ import android.os.SystemClock;
 import androidx.annotation.DrawableRes;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
-import androidx.core.content.ContextCompat;
+
 import android.text.TextUtils;
 import android.widget.RemoteViews;
 
@@ -99,7 +99,7 @@ class TimerNotificationBuilder {
                         .setAction(TimerService.ACTION_PAUSE_TIMER)
                         .putExtra(TimerService.EXTRA_TIMER_ID, timer.getId());
 
-                @DrawableRes final int icon1 = R.drawable.ic_pause_24dp;
+                @DrawableRes final int icon1 = R.drawable.ic_pause;
                 final CharSequence title1 = res.getText(R.string.timer_pause);
                 final PendingIntent intent1 = Utils.pendingServiceIntent(context, pause);
                 actions.add(new Action.Builder(icon1, title1, intent1).build());
@@ -109,7 +109,7 @@ class TimerNotificationBuilder {
                         .setAction(TimerService.ACTION_ADD_MINUTE_TIMER)
                         .putExtra(TimerService.EXTRA_TIMER_ID, timer.getId());
 
-                @DrawableRes final int icon2 = R.drawable.ic_add_24dp;
+                @DrawableRes final int icon2 = R.drawable.ic_add;
                 final CharSequence title2 = res.getText(R.string.timer_plus_1_min);
                 final PendingIntent intent2 = Utils.pendingServiceIntent(context, addMinute);
                 actions.add(new Action.Builder(icon2, title2, intent2).build());
@@ -123,7 +123,7 @@ class TimerNotificationBuilder {
                         .setAction(TimerService.ACTION_START_TIMER)
                         .putExtra(TimerService.EXTRA_TIMER_ID, timer.getId());
 
-                @DrawableRes final int icon1 = R.drawable.ic_start_24dp;
+                @DrawableRes final int icon1 = R.drawable.ic_start;
                 final CharSequence title1 = res.getText(R.string.sw_resume_button);
                 final PendingIntent intent1 = Utils.pendingServiceIntent(context, start);
                 actions.add(new Action.Builder(icon1, title1, intent1).build());
@@ -133,7 +133,7 @@ class TimerNotificationBuilder {
                         .setAction(TimerService.ACTION_RESET_TIMER)
                         .putExtra(TimerService.EXTRA_TIMER_ID, timer.getId());
 
-                @DrawableRes final int icon2 = R.drawable.ic_reset_24dp;
+                @DrawableRes final int icon2 = R.drawable.ic_reset;
                 final CharSequence title2 = res.getText(R.string.sw_reset_button);
                 final PendingIntent intent2 = Utils.pendingServiceIntent(context, reset);
                 actions.add(new Action.Builder(icon2, title2, intent2).build());
@@ -149,7 +149,7 @@ class TimerNotificationBuilder {
 
             final Intent reset = TimerService.createResetUnexpiredTimersIntent(context);
 
-            @DrawableRes final int icon1 = R.drawable.ic_reset_24dp;
+            @DrawableRes final int icon1 = R.drawable.ic_reset;
             final CharSequence title1 = res.getText(R.string.timer_reset_all);
             final PendingIntent intent1 = Utils.pendingServiceIntent(context, reset);
             actions.add(new Action.Builder(icon1, title1, intent1).build());
@@ -231,7 +231,7 @@ class TimerNotificationBuilder {
         final Timer timer = expired.get(0);
 
         // First action intent is to reset all timers.
-        @DrawableRes final int icon1 = R.drawable.ic_stop_24dp;
+        @DrawableRes final int icon1 = R.drawable.ic_stop;
         final Intent reset = TimerService.createResetExpiredTimersIntent(context);
         final PendingIntent intent1 = Utils.pendingServiceIntent(context, reset);
 
@@ -254,7 +254,7 @@ class TimerNotificationBuilder {
             // Right button: Add minute
             final Intent addTime = TimerService.createAddMinuteTimerIntent(context, timer.getId());
             final PendingIntent intent2 = Utils.pendingServiceIntent(context, addTime);
-            @DrawableRes final int icon2 = R.drawable.ic_add_24dp;
+            @DrawableRes final int icon2 = R.drawable.ic_add;
             final CharSequence title2 = context.getString(R.string.timer_plus_1_min);
             actions.add(new Action.Builder(icon2, title2, intent2).build());
         } else {
@@ -335,7 +335,7 @@ class TimerNotificationBuilder {
                     .setAction(TimerService.ACTION_RESET_TIMER)
                     .putExtra(TimerService.EXTRA_TIMER_ID, timer.getId());
 
-            @DrawableRes final int icon1 = R.drawable.ic_reset_24dp;
+            @DrawableRes final int icon1 = R.drawable.ic_reset;
             final CharSequence title1 = res.getText(R.string.timer_reset);
             final PendingIntent intent1 = Utils.pendingServiceIntent(context, reset);
             action = new Action.Builder(icon1, title1, intent1).build();
@@ -345,7 +345,7 @@ class TimerNotificationBuilder {
 
             final Intent reset = TimerService.createResetMissedTimersIntent(context);
 
-            @DrawableRes final int icon1 = R.drawable.ic_reset_24dp;
+            @DrawableRes final int icon1 = R.drawable.ic_reset;
             final CharSequence title1 = res.getText(R.string.timer_reset_all);
             final PendingIntent intent1 = Utils.pendingServiceIntent(context, reset);
             action = new Action.Builder(icon1, title1, intent1).build();

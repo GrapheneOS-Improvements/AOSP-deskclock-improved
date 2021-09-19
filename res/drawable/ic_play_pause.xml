@@ -32,7 +32,8 @@
                 <path
                     android:name="path_1"
                     android:pathData="M -3.9375,-14.0625 c 0.0,0.0 -8.0625,0.0 -8.0625,0.0 c 0.0,0.0 0.0,28.125 0.0,28.125 c 0.0,0.0 8.0625,0.0 8.0625,0.0 c 0.0,0.0 0.0,-28.125 0.0,-28.125 Z"
-                    android:strokeWidth="0" />
+                    android:strokeWidth="0"
+                    android:fillColor="@android:color/white" />
             </group>
         </group>
         <group
@@ -46,7 +47,8 @@
                     <path
                         android:name="path_2"
                         android:pathData="M -3.9375,-14.0625 c 0.0,0.0 -8.0625,0.0 -8.0625,0.0 c 0.0,0.0 0.0,28.125 0.0,28.125 c 0.0,0.0 8.0625,0.0 8.0625,0.0 c 0.0,0.0 0.0,-28.125 0.0,-28.125 Z"
-                        android:strokeWidth="0" />
+                        android:strokeWidth="0"
+                        android:fillColor="@android:color/white" />
                 </group>
             </group>
         </group>
