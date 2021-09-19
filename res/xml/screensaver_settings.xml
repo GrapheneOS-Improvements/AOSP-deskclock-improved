@@ -12,8 +12,8 @@
      limitations under the License.
 -->
 
-<PreferenceScreen
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:title="@string/app_label">
 
     <ListPreference
@@ -22,6 +22,7 @@
         android:entries="@array/clock_style_entries"
         android:entryValues="@array/clock_style_values"
         android:key="screensaver_clock_style"
+        app:allowDividerBelow="false"
         android:title="@string/clock_style" />
 
     <CheckBoxPreference

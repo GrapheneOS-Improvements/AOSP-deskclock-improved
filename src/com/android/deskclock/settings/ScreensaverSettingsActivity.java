@@ -19,18 +19,17 @@ package com.android.deskclock.settings;
 import android.annotation.TargetApi;
 import android.os.Build;
 import android.os.Bundle;
-import android.preference.ListPreference;
-import android.preference.Preference;
-import android.preference.PreferenceFragment;
+import androidx.preference.ListPreference;
+import androidx.preference.Preference;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.preference.PreferenceFragmentCompat;
+
 import android.view.MenuItem;
 
 import com.android.deskclock.R;
 import com.android.deskclock.Utils;
 
-/**
- * Settings for Clock screen saver
- */
+/** Settings for Clock screen saver */
 public final class ScreensaverSettingsActivity extends AppCompatActivity {
 
     public static final String KEY_CLOCK_STYLE = "screensaver_clock_style";
@@ -40,10 +39,12 @@ public final class ScreensaverSettingsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.screensaver_settings);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     @Override
-    public boolean onOptionsItemSelected (MenuItem item) {
+    public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
                 finish();
@@ -54,8 +55,7 @@ public final class ScreensaverSettingsActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-
-    public static class PrefsFragment extends PreferenceFragment
+    public static class PrefsFragment extends PreferenceFragmentCompat
             implements Preference.OnPreferenceChangeListener {
 
         @Override
@@ -68,6 +68,9 @@ public final class ScreensaverSettingsActivity extends AppCompatActivity {
             }
             addPreferencesFromResource(R.xml.screensaver_settings);
         }
+
+        @Override
+        public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {}
 
         @Override
         public void onResume() {
