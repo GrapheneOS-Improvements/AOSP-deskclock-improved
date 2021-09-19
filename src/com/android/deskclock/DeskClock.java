@@ -112,9 +112,6 @@ public class DeskClock extends BaseActivity
     /** The button right of the {@link #mFab} shared across all tabs in the user interface. */
     private Button mRightButton;
 
-    /** The controller that shows the drop shadow when content is not scrolled to the top. */
-    private DropShadowController mDropShadowController;
-
     /** The ViewPager that pages through the fragments representing the content of the tabs. */
     private ViewPager mFragmentTabPager;
 
@@ -317,10 +314,6 @@ public class DeskClock extends BaseActivity
     protected void onResume() {
         super.onResume();
 
-        final View dropShadow = findViewById(R.id.drop_shadow);
-        mDropShadowController = new DropShadowController(dropShadow, UiDataModel.getUiDataModel(),
-                mSnackbarAnchor.findViewById(R.id.tab_hairline));
-
         // ViewPager does not save state; this honors the selected tab in the user interface.
         updateCurrentTab();
     }
@@ -341,16 +334,6 @@ public class DeskClock extends BaseActivity
                 }
             });
         }
-    }
-
-    @Override
-    public void onPause() {
-        if (mDropShadowController != null) {
-            mDropShadowController.stop();
-            mDropShadowController = null;
-        }
-
-        super.onPause();
     }
 
     @Override
@@ -454,9 +437,10 @@ public class DeskClock extends BaseActivity
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
         // Recreate the activity if any settings have been changed
         if (requestCode == SettingsMenuItemController.REQUEST_CHANGE_SETTINGS
-                && resultCode == RESULT_OK) {
+            && resultCode == RESULT_OK) {
             mRecreateActivity = true;
         }
     }

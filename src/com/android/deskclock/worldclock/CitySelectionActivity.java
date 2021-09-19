@@ -95,11 +95,6 @@ public final class CitySelectionActivity extends BaseActivity {
      */
     private SearchMenuItemController mSearchMenuItemController;
 
-    /**
-     * The controller that shows the drop shadow when content is not scrolled to the top.
-     */
-    private DropShadowController mDropShadowController;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -145,16 +140,11 @@ public final class CitySelectionActivity extends BaseActivity {
 
         // Recompute the contents of the adapter before displaying on screen.
         mCitiesAdapter.refresh();
-
-        final View dropShadow = findViewById(R.id.drop_shadow);
-        mDropShadowController = new DropShadowController(dropShadow, mCitiesList);
     }
 
     @Override
     public void onPause() {
         super.onPause();
-
-        mDropShadowController.stop();
 
         // Save the selected cities.
         DataModel.getDataModel().setSelectedCities(mCitiesAdapter.getSelectedCities());

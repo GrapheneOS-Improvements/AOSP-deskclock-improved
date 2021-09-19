@@ -71,11 +71,6 @@ public final class SettingsActivity extends BaseActivity {
 
     private final OptionsMenuManager mOptionsMenuManager = new OptionsMenuManager();
 
-    /**
-     * The controller that shows the drop shadow when content is not scrolled to the top.
-     */
-    private DropShadowController mDropShadowController;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -98,15 +93,12 @@ public final class SettingsActivity extends BaseActivity {
     protected void onResume() {
         super.onResume();
 
-        final View dropShadow = findViewById(R.id.drop_shadow);
         final PrefsFragment fragment =
                 (PrefsFragment) getSupportFragmentManager().findFragmentById(R.id.main);
-        mDropShadowController = new DropShadowController(dropShadow, fragment.getListView());
     }
 
     @Override
     protected void onPause() {
-        mDropShadowController.stop();
         super.onPause();
     }
 

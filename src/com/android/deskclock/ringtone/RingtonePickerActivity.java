@@ -96,9 +96,6 @@ public class RingtonePickerActivity extends BaseActivity
     /** Key to an instance state value indicating if the selected ringtone is currently playing. */
     private static final String STATE_KEY_PLAYING = "extra_is_playing";
 
-    /** The controller that shows the drop shadow when content is not scrolled to the top. */
-    private DropShadowController mDropShadowController;
-
     /** Generates the items in the activity context menu. */
     private OptionsMenuManager mOptionsMenuManager;
 
@@ -213,18 +210,7 @@ public class RingtonePickerActivity extends BaseActivity
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
-
-        final View dropShadow = findViewById(R.id.drop_shadow);
-        mDropShadowController = new DropShadowController(dropShadow, mRecyclerView);
-    }
-
-    @Override
     protected void onPause() {
-        mDropShadowController.stop();
-        mDropShadowController = null;
-
         if (mSelectedRingtoneUri != null) {
             if (mAlarmId != -1) {
                 final Context context = getApplicationContext();
@@ -328,6 +314,7 @@ public class RingtonePickerActivity extends BaseActivity
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
         if (resultCode != RESULT_OK) {
             return;
         }
