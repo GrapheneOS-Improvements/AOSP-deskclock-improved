@@ -16,6 +16,7 @@
 
 package com.android.deskclock;
 
+import android.annotation.SuppressLint;
 import android.app.AlarmManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -23,12 +24,15 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.database.ContentObserver;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.Settings;
 import android.view.View;
 import android.view.ViewTreeObserver.OnPreDrawListener;
 import android.view.Window;
+import android.view.WindowInsets;
+import android.view.WindowInsetsController;
 import android.view.WindowManager;
 import android.widget.TextClock;
 
@@ -98,6 +102,7 @@ public class ScreensaverActivity extends BaseActivity {
 
     private MoveScreensaverRunnable mPositionUpdater;
 
+    @SuppressLint("WrongConstant")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -119,11 +124,30 @@ public class ScreensaverActivity extends BaseActivity {
         Utils.dimClockView(true, mMainClockView);
         analogClock.enableSeconds(false);
 
-        mContentView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LOW_PROFILE
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            WindowInsetsController insetsController = mContentView.getWindowInsetsController();
+            // Immersive
+            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.S)
+                insetsController.setSystemBarsBehavior(WindowInsetsController.BEHAVIOR_DEFAULT);
+            else
+                // Need supress lint for this, this is correct in api 30 but not in 31
+                insetsController.setSystemBarsBehavior(WindowInsetsController.BEHAVIOR_SHOW_BARS_BY_SWIPE);
+            // Low profile
+            insetsController.hide(WindowInsets.Type.systemBars());
+            // Full screen
+            insetsController.hide(WindowInsets.Type.statusBars());
+            // Hide navigation
+            insetsController.hide(WindowInsets.Type.navigationBars());
+            // Layout fullscreen
+            getWindow().setDecorFitsSystemWindows(false);
+        } else {
+            mContentView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LOW_PROFILE
                 | View.SYSTEM_UI_FLAG_IMMERSIVE
                 | View.SYSTEM_UI_FLAG_FULLSCREEN
                 | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                 | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+        }
+
         mContentView.setOnSystemUiVisibilityChangeListener(new InteractionListener());
 
         mPositionUpdater = new MoveScreensaverRunnable(mContentView, mMainClockView);

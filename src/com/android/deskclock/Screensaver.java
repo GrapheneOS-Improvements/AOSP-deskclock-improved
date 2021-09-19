@@ -104,12 +104,6 @@ public final class Screensaver extends DreamService {
         Utils.setTimeFormat(mDigitalClock, false);
         mAnalogClock.enableSeconds(false);
 
-        mContentView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LOW_PROFILE
-                | View.SYSTEM_UI_FLAG_IMMERSIVE
-                | View.SYSTEM_UI_FLAG_FULLSCREEN
-                | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
-
         mPositionUpdater = new MoveScreensaverRunnable(mContentView, mMainClockView);
 
         // We want the screen saver to exit upon user interaction.

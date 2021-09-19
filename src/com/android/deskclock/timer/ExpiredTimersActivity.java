@@ -16,6 +16,7 @@ package com.android.deskclock.timer;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.SystemClock;
 import androidx.annotation.NonNull;
@@ -26,6 +27,8 @@ import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowInsets;
+import android.view.WindowInsetsController;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.TextView;
@@ -79,7 +82,13 @@ public class ExpiredTimersActivity extends BaseActivity {
         findViewById(R.id.fab).setOnClickListener(new FabClickListener());
 
         final View view = findViewById(R.id.expired_timers_activity);
-        view.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LOW_PROFILE);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            WindowInsetsController insetsController = view.getWindowInsetsController();
+            // Low profile
+            insetsController.hide(WindowInsets.Type.systemBars());
+        } else {
+            view.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LOW_PROFILE);
+        }
 
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED
                 | WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON
