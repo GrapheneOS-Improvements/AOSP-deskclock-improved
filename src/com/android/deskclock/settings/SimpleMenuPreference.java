@@ -131,13 +131,7 @@ public class SimpleMenuPreference extends DropDownPreference {
 
         @Override
         public View getDropDownView(int position, View convertView, @NonNull ViewGroup parent) {
-            final View view = super.getDropDownView(position, convertView, parent);
-            if (position == 0) {
-                view.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.white_08p));
-            } else {
-                view.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.transparent));
-            }
-            return view;
+            return super.getDropDownView(position, convertView, parent);
         }
     }
 }

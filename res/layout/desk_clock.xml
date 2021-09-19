@@ -22,8 +22,7 @@
     android:id="@+id/content"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    app:statusBarBackground="@null">
+    android:fitsSystemWindows="true">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -56,7 +55,6 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/hairline_height"
             android:layout_gravity="bottom"
-            android:background="@color/hairline"
             android:importantForAccessibility="no" />
 
     </com.google.android.material.appbar.AppBarLayout>

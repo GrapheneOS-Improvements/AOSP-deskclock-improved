@@ -88,9 +88,6 @@ final class RingtoneViewHolder extends ItemAdapter.ItemViewHolder<RingtoneHolder
 
         mSelectedView.setVisibility(itemHolder.isSelected() ? VISIBLE : GONE);
 
-        final int bgColorId = itemHolder.isSelected() ? R.color.white_08p : R.color.transparent;
-        itemView.setBackgroundColor(ContextCompat.getColor(itemView.getContext(), bgColorId));
-
         if (itemViewType == VIEW_TYPE_CUSTOM_SOUND) {
             itemView.setOnCreateContextMenuListener(this);
         }
