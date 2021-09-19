@@ -20,6 +20,7 @@ import android.annotation.TargetApi;
 import android.app.AlarmManager;
 import android.app.Notification;
 import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
@@ -66,7 +67,7 @@ class TimerNotificationBuilder {
             NotificationChannel channel = new NotificationChannel(
                     TIMER_MODEL_NOTIFICATION_CHANNEL_ID,
                     context.getString(R.string.default_label),
-                    NotificationManagerCompat.IMPORTANCE_DEFAULT);
+                    NotificationManager.IMPORTANCE_DEFAULT);
             notificationManager.createNotificationChannel(channel);
         }
     }
