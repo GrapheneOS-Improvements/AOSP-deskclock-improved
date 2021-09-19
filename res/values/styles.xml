@@ -32,6 +32,8 @@
     </style>
 
     <style name="widget_label" parent="label">
+        <item name="android:textAllCaps">true</item>
+        <item name="android:letterSpacing">0.15</item>
         <item name="android:shadowRadius">@dimen/widget_shadow_radius</item>
         <item name="android:shadowDy">@dimen/widget_shadow_dy</item>
     </style>
@@ -49,6 +51,7 @@
 
     <style name="body">
         <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
     </style>
 
     <style name="big_thin">
@@ -62,6 +65,7 @@
     </style>
 
     <style name="widget_big_thin" parent="big_thin">
+        <item name="android:fontFamily">sans-serif-light</item>
         <item name="android:shadowRadius">@dimen/widget_shadow_radius</item>
         <item name="android:shadowDy">@dimen/widget_shadow_dy</item>
     </style>
@@ -74,28 +78,20 @@
         <item name="android:textStyle">bold</item>
     </style>
 
-    <style name="PrimaryLabelTextParentAppearance" parent="TextAppearance.MaterialComponents.Body1">
+    <style name="PrimaryLabelTextAppearance" parent="TextAppearance.MaterialComponents.Body1">
         <item name="android:textSize">@dimen/label_text_size</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
     </style>
 
-    <style name="PrimaryLabelTextAppearance" parent="PrimaryLabelTextParentAppearance" />
-
-    <style name="SecondaryLabelTextParentAppearance" parent="TextAppearance.MaterialComponents.Body1">
+    <style name="SecondaryLabelTextAppearance" parent="TextAppearance.MaterialComponents.Body1">
         <item name="android:textColor">?android:attr/textColorSecondary</item>
         <item name="android:textSize">@dimen/label_text_size</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
     </style>
-
-    <style name="SecondaryLabelTextAppearance" parent="SecondaryLabelTextParentAppearance" />
 
     <style name="TextAppearance.Tab" parent="TextAppearance.Design.Tab">
         <item name="android:fontFamily">sans-serif-medium</item>
         <item name="android:textSize">12sp</item>
-    </style>
-
-    <style name="Widget.ActionBar" parent="Widget.MaterialComponents.ActionBar.Primary">
-    </style>
-
-    <style name="Widget.ActionBar.NoTitle">
     </style>
 
     <style name="Widget.Button.TimerSetupDigit" parent="Widget.AppCompat.Button.Borderless">
@@ -109,9 +105,6 @@
 
     <style name="Widget.ImageButton" parent="Widget.AppCompat.ImageButton">
         <item name="android:background">?attr/selectableItemBackgroundBorderless</item>
-    </style>
-
-    <style name="Widget.TimePicker" parent="android:Widget.Material.TimePicker">
     </style>
 
 </resources>
