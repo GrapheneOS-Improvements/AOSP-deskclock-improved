@@ -81,8 +81,8 @@ public final class StopwatchCircleView extends View {
         mMarkerStrokeSize = resources.getDimension(R.dimen.circletimer_marker_size);
         mRadiusOffset = Utils.calculateRadiusOffset(mStrokeSize, dotDiameter, mMarkerStrokeSize);
 
-        mRemainderColor = Color.WHITE;
-        mCompletedColor = ThemeUtils.resolveColor(context, R.attr.colorAccent);
+        mCompletedColor = ThemeUtils.resolveColor(context, R.attr.colorSecondary);
+        mRemainderColor = Color.argb(96, Color.red(mCompletedColor), Color.green(mCompletedColor), Color.blue(mCompletedColor));
 
         mPaint.setAntiAlias(true);
         mPaint.setStyle(Paint.Style.STROKE);
@@ -146,7 +146,7 @@ public final class StopwatchCircleView extends View {
 
         // Starting on lap 2, a marker can be drawn indicating where the prior lap ended.
         if (lapCount > 1) {
-            mPaint.setColor(mRemainderColor);
+            mPaint.setColor(mCompletedColor);
             mPaint.setStrokeWidth(mMarkerStrokeSize);
             final float markerAngle = (float) priorLap.getLapTime() / (float) firstLapTime * 360;
             final float startAngle = 270 + markerAngle;
