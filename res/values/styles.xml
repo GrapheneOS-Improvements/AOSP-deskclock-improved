@@ -94,7 +94,7 @@
         <item name="android:textSize">12sp</item>
     </style>
 
-    <style name="Widget.Button.TimerSetupDigit" parent="Widget.AppCompat.Button.Borderless">
+    <style name="Widget.Button.TimerSetupDigit" parent="Widget.MaterialComponents.Button.TextButton">
         <item name="android:background">?attr/selectableItemBackgroundBorderless</item>
         <item name="android:fontFamily">sans-serif-light</item>
         <item name="android:gravity">center</item>
@@ -103,7 +103,7 @@
         <item name="android:textSize">36sp</item>
     </style>
 
-    <style name="Widget.ImageButton" parent="Widget.AppCompat.ImageButton">
+    <style name="Widget.ImageButton" parent="Widget.MaterialComponents.TimePicker.ImageButton">
         <item name="android:background">?attr/selectableItemBackgroundBorderless</item>
     </style>
 
