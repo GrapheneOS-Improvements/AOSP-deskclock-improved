@@ -33,6 +33,14 @@
         <item name="colorPrimaryVariant">@color/colorPrimaryVariant</item>
         <item name="colorSecondaryVariant">@color/colorSecondaryVariant</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+
+        <item name="android:statusBarColor">?android:attr/colorBackground</item>
+        <item name="android:windowLightStatusBar">?android:attr/isLightTheme</item>
+        <item name="actionBarStyle">@style/Theme.DeskClock.Widgets.ActionBar</item>
+    </style>
+
+    <style name="Theme.DeskClock.Widgets.ActionBar" parent="Widget.MaterialComponents.ActionBar.Solid">
+        <item name="background">?android:attr/colorBackground</item>
     </style>
 
 </resources>

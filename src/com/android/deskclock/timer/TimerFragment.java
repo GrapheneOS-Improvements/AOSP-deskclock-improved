@@ -272,13 +272,13 @@ public final class TimerFragment extends DeskClockFragment {
                     break;
                 case MISSED:
                 case EXPIRED:
-                    fab.setImageResource(R.drawable.ic_stop_white_24dp);
+                    fab.setImageResource(R.drawable.ic_stop);
                     fab.setContentDescription(fab.getResources().getString(R.string.timer_stop));
                     break;
             }
         } else if (mCurrentView == mCreateTimerView) {
             if (mCreateTimerView.hasValidInput()) {
-                fab.setImageResource(R.drawable.ic_start_white_24dp);
+                fab.setImageResource(R.drawable.ic_start);
                 fab.setContentDescription(fab.getResources().getString(R.string.timer_start));
                 fab.setVisibility(VISIBLE);
             } else {
