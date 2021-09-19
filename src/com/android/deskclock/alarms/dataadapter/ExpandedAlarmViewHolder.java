@@ -86,7 +86,6 @@ public final class ExpandedAlarmViewHolder extends AlarmItemViewHolder {
 
         final Context context = itemView.getContext();
         itemView.setBackground(new LayerDrawable(new Drawable[] {
-                ContextCompat.getDrawable(context, R.drawable.alarm_background_expanded),
                 ThemeUtils.resolveDrawable(context, R.attr.selectableItemBackground)
         }));
 
