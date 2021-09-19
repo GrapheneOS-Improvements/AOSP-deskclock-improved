@@ -174,7 +174,7 @@ class TimerNotificationBuilder {
                         .setContentIntent(pendingShowApp)
                         .setPriority(Notification.PRIORITY_HIGH)
                         .setCategory(NotificationCompat.CATEGORY_ALARM)
-                        .setSmallIcon(R.drawable.stat_notify_timer)
+                        .setSmallIcon(R.drawable.ic_timer)
                         .setSortKey(nm.getTimerNotificationSortKey())
                         .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
                         .setStyle(new NotificationCompat.DecoratedCustomViewStyle());
@@ -287,7 +287,7 @@ class TimerNotificationBuilder {
                         .setContentIntent(contentIntent)
                         .setPriority(Notification.PRIORITY_MAX)
                         .setDefaults(Notification.DEFAULT_LIGHTS)
-                        .setSmallIcon(R.drawable.stat_notify_timer)
+                        .setSmallIcon(R.drawable.ic_timer)
                         .setFullScreenIntent(pendingFullScreen, true)
                         .setStyle(new NotificationCompat.DecoratedCustomViewStyle());
 
@@ -369,7 +369,7 @@ class TimerNotificationBuilder {
                         .setContentIntent(pendingShowApp)
                         .setPriority(Notification.PRIORITY_HIGH)
                         .setCategory(NotificationCompat.CATEGORY_ALARM)
-                        .setSmallIcon(R.drawable.stat_notify_timer)
+                        .setSmallIcon(R.drawable.ic_timer)
                         .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
                         .setSortKey(nm.getTimerNotificationMissedSortKey())
                         .setStyle(new NotificationCompat.DecoratedCustomViewStyle())

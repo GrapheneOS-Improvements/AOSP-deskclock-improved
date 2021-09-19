@@ -122,7 +122,7 @@ final class AlarmNotifications {
                                 R.string.alarm_alert_predismiss_title))
                         .setContentText(AlarmUtils.getAlarmText(
                                 context, instance, true /* includeLabel */))
-                        .setSmallIcon(R.drawable.stat_notify_alarm)
+                        .setSmallIcon(R.drawable.ic_alarm)
                         .setAutoCancel(false)
                         .setSortKey(createSortKey(instance))
                         .setPriority(NotificationCompat.PRIORITY_DEFAULT)
@@ -179,7 +179,7 @@ final class AlarmNotifications {
                                 R.string.alarm_alert_predismiss_title))
                         .setContentText(AlarmUtils.getAlarmText(
                                 context, instance, true /* includeLabel */))
-                        .setSmallIcon(R.drawable.stat_notify_alarm)
+                        .setSmallIcon(R.drawable.ic_alarm)
                         .setAutoCancel(false)
                         .setSortKey(createSortKey(instance))
                         .setPriority(NotificationCompat.PRIORITY_HIGH)
@@ -299,7 +299,7 @@ final class AlarmNotifications {
             summary = new NotificationCompat.Builder(context, ALARM_NOTIFICATION_CHANNEL_ID)
                     .setShowWhen(false)
                     .setContentIntent(firstUpcoming.contentIntent)
-                    .setSmallIcon(R.drawable.stat_notify_alarm)
+                    .setSmallIcon(R.drawable.ic_alarm)
                     .setGroup(UPCOMING_GROUP_KEY)
                     .setGroupSummary(true)
                     .setPriority(NotificationCompat.PRIORITY_HIGH)
@@ -346,7 +346,7 @@ final class AlarmNotifications {
             summary = new NotificationCompat.Builder(context, ALARM_NOTIFICATION_CHANNEL_ID)
                     .setShowWhen(false)
                     .setContentIntent(firstMissed.contentIntent)
-                    .setSmallIcon(R.drawable.stat_notify_alarm)
+                    .setSmallIcon(R.drawable.ic_alarm)
                     .setGroup(MISSED_GROUP_KEY)
                     .setGroupSummary(true)
                     .setPriority(NotificationCompat.PRIORITY_HIGH)
@@ -368,7 +368,7 @@ final class AlarmNotifications {
                         .setContentTitle(instance.getLabelOrDefault(context))
                         .setContentText(context.getString(R.string.alarm_alert_snooze_until,
                                 AlarmUtils.getFormattedTime(context, instance.getAlarmTime())))
-                        .setSmallIcon(R.drawable.stat_notify_alarm)
+                        .setSmallIcon(R.drawable.ic_alarm)
                         .setAutoCancel(false)
                         .setSortKey(createSortKey(instance))
                         .setPriority(NotificationCompat.PRIORITY_MAX)
@@ -420,7 +420,7 @@ final class AlarmNotifications {
                         .setContentText(instance.mLabel.isEmpty() ? alarmTime :
                                 context.getString(R.string.alarm_missed_text, alarmTime, label))
                         .setSortKey(createSortKey(instance))
-                        .setSmallIcon(R.drawable.stat_notify_alarm)
+                        .setSmallIcon(R.drawable.ic_alarm)
                         .setPriority(NotificationCompat.PRIORITY_HIGH)
                         .setCategory(NotificationCompat.CATEGORY_ALARM)
                         .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
@@ -468,7 +468,7 @@ final class AlarmNotifications {
                         .setContentTitle(instance.getLabelOrDefault(service))
                         .setContentText(AlarmUtils.getFormattedTime(
                                 service, instance.getAlarmTime()))
-                        .setSmallIcon(R.drawable.stat_notify_alarm)
+                        .setSmallIcon(R.drawable.ic_alarm)
                         .setOngoing(true)
                         .setAutoCancel(false)
                         .setDefaults(NotificationCompat.DEFAULT_LIGHTS)
