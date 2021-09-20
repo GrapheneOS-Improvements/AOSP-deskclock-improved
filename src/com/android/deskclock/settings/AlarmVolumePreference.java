@@ -16,125 +16,119 @@
 
 package com.android.deskclock.settings;
 
-import android.annotation.TargetApi;
+import android.app.Activity;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.database.ContentObserver;
 import android.media.AudioManager;
 import android.os.Build;
 import android.provider.Settings;
-import androidx.preference.Preference;
+
 import androidx.preference.PreferenceViewHolder;
+import androidx.preference.SeekBarPreference;
+
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.SeekBar;
 
 import com.android.deskclock.R;
 import com.android.deskclock.RingtonePreviewKlaxon;
-import com.android.deskclock.Utils;
 import com.android.deskclock.data.DataModel;
 
 import static android.content.Context.AUDIO_SERVICE;
 import static android.content.Context.NOTIFICATION_SERVICE;
 import static android.media.AudioManager.STREAM_ALARM;
 
-public class AlarmVolumePreference extends Preference {
+public class AlarmVolumePreference extends SeekBarPreference {
 
     private static final long ALARM_PREVIEW_DURATION_MS = 2000;
 
-    private SeekBar mSeekbar;
-    private ImageView mAlarmIcon;
     private boolean mPreviewPlaying;
+    private ContentObserver mVolumeObserver;
+    private final AudioManager mAudioManager;
 
     public AlarmVolumePreference(Context context, AttributeSet attrs) {
         super(context, attrs);
+        mAudioManager = (AudioManager) context.getSystemService(AUDIO_SERVICE);
+    }
+
+    @Override
+    public void onAttached() {
+        super.onAttached();
+
+        setMax(mAudioManager.getStreamMaxVolume(STREAM_ALARM));
+        setValue(mAudioManager.getStreamVolume(STREAM_ALARM));
     }
 
     @Override
     public void onBindViewHolder(PreferenceViewHolder holder) {
         super.onBindViewHolder(holder);
-
-        final Context context = getContext();
-        final AudioManager audioManager = (AudioManager) context.getSystemService(AUDIO_SERVICE);
-
-        // Disable click feedback for this preference.
         holder.itemView.setClickable(false);
 
-        mSeekbar = (SeekBar) holder.findViewById(R.id.alarm_volume_slider);
-        mSeekbar.setMax(audioManager.getStreamMaxVolume(STREAM_ALARM));
-        mSeekbar.setProgress(audioManager.getStreamVolume(STREAM_ALARM));
-        mAlarmIcon = (ImageView) holder.findViewById(R.id.alarm_icon);
-        onSeekbarChanged();
+        Context context = getContext();
+        SeekBar localSeekBar = (SeekBar) holder.findViewById(R.id.seekbar);
 
-        final ContentObserver volumeObserver = new ContentObserver(mSeekbar.getHandler()) {
-            @Override
-            public void onChange(boolean selfChange) {
-                // Volume was changed elsewhere, update our slider.
-                mSeekbar.setProgress(audioManager.getStreamVolume(STREAM_ALARM));
-            }
-        };
+        mVolumeObserver =
+                new ContentObserver(localSeekBar.getHandler()) {
+                    @Override
+                    public void onChange(boolean selfChange) {
+                        // Volume was changed elsewhere, update our slider.
+                        localSeekBar.setProgress(mAudioManager.getStreamVolume(STREAM_ALARM));
+                    }
+                };
 
-        mSeekbar.addOnAttachStateChangeListener(new View.OnAttachStateChangeListener() {
-            @Override
-            public void onViewAttachedToWindow(View v) {
-                context.getContentResolver().registerContentObserver(Settings.System.CONTENT_URI,
-                        true, volumeObserver);
-            }
+        context.getContentResolver()
+                .registerContentObserver(Settings.System.CONTENT_URI, true, mVolumeObserver);
 
-            @Override
-            public void onViewDetachedFromWindow(View v) {
-                context.getContentResolver().unregisterContentObserver(volumeObserver);
-            }
-        });
-
-        mSeekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                if (fromUser) {
-                    audioManager.setStreamVolume(STREAM_ALARM, progress, 0);
-                }
-                onSeekbarChanged();
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-                if (!mPreviewPlaying && seekBar.getProgress() != 0) {
-                    // If we are not currently playing and progress is set to non-zero, start.
-                    RingtonePreviewKlaxon.start(
-                            context, DataModel.getDataModel().getDefaultAlarmRingtoneUri());
-                    mPreviewPlaying = true;
-                    seekBar.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            RingtonePreviewKlaxon.stop(context);
-                            mPreviewPlaying = false;
+        localSeekBar.setOnSeekBarChangeListener(
+                new SeekBar.OnSeekBarChangeListener() {
+                    @Override
+                    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                        if (fromUser) {
+                            mAudioManager.setStreamVolume(STREAM_ALARM, progress, 0);
                         }
-                    }, ALARM_PREVIEW_DURATION_MS);
-                }
-            }
-        });
+                        setValue(progress);
+                        onSeekbarChanged();
+                    }
+
+                    @Override
+                    public void onStartTrackingTouch(SeekBar seekBar) {}
+
+                    @Override
+                    public void onStopTrackingTouch(SeekBar seekBar) {
+                        if (!mPreviewPlaying && seekBar.getProgress() != 0) {
+                            // If we are not currently playing and progress is set tonon-zero,
+                            // start.
+                            RingtonePreviewKlaxon.start(
+                                    context, DataModel.getDataModel().getDefaultAlarmRingtoneUri());
+                            mPreviewPlaying = true;
+                            seekBar.postDelayed(
+                                    () -> {
+                                        RingtonePreviewKlaxon.stop(context);
+                                        mPreviewPlaying = false;
+                                    },
+                                    ALARM_PREVIEW_DURATION_MS);
+                        }
+                    }
+                });
+    }
+
+    @Override
+    public void onDetached() {
+        super.onDetached();
+        getContext().getContentResolver().unregisterContentObserver(mVolumeObserver);
     }
 
     private void onSeekbarChanged() {
-        mSeekbar.setEnabled(doesDoNotDisturbAllowAlarmPlayback());
-        mAlarmIcon.setImageResource(mSeekbar.getProgress() == 0 ?
-                R.drawable.ic_alarm_off : R.drawable.ic_alarm_small);
+        setEnabled(doesDoNotDisturbAllowAlarmPlayback());
+        setIcon(getValue() == 0 ? R.drawable.ic_alarm_off : R.drawable.ic_alarm_small);
     }
 
     private boolean doesDoNotDisturbAllowAlarmPlayback() {
-        return !Utils.isNOrLater() || doesDoNotDisturbAllowAlarmPlaybackNPlus();
-    }
-
-    @TargetApi(Build.VERSION_CODES.N)
-    private boolean doesDoNotDisturbAllowAlarmPlaybackNPlus() {
-        final NotificationManager notificationManager = (NotificationManager)
-                getContext().getSystemService(NOTIFICATION_SERVICE);
-        return notificationManager.getCurrentInterruptionFilter() !=
-                NotificationManager.INTERRUPTION_FILTER_NONE;
+        final NotificationManager notificationManager =
+                (NotificationManager) getContext().getSystemService(NOTIFICATION_SERVICE);
+        return notificationManager.getCurrentInterruptionFilter()
+                != NotificationManager.INTERRUPTION_FILTER_NONE;
     }
 }
