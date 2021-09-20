@@ -21,7 +21,7 @@
     android:height="24dp"
     android:viewportHeight="24.0"
     android:viewportWidth="24.0"
-    android:tint="?android:attr/textColorSecondary" >
+    android:tint="@color/defaultUIColor" >
     <group
         android:name="caret02"
         android:rotation="90"

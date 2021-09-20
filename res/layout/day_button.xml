@@ -24,6 +24,7 @@
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:background="@drawable/toggle_circle"
+        android:backgroundTint="?android:attr/textColorSecondary"
         android:button="@null"
         android:gravity="center"
         android:textSize="@dimen/day_button_font_size" />

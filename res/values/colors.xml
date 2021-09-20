@@ -16,11 +16,15 @@
 
 <resources>
 
-    <color name="colorPrimary">#ffc107</color>
-    <color name="colorPrimaryVariant">#694f00</color>
-    <color name="colorPrimaryDark">#c79100</color>
+    <color name="colorPrimary">#03a9f4</color>
+    <color name="colorPrimaryVariant">#0091ea</color>
+    <color name="colorPrimaryDark">#007ac1</color>
 
-    <color name="colorSecondary">#ffc107</color>
-    <color name="colorSecondaryVariant">#694f00</color>
+    <color name="colorSecondary">#03a9f4</color>
+    <color name="colorSecondaryVariant">#007ac1</color>
+
+    <!-- Variable colors -->
+
+    <color name="defaultUIColor">?android:attr/textColorSecondary</color>
 
 </resources>

@@ -16,7 +16,7 @@
 
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-    <style name="Theme.DeskClock" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="parentTheme" parent="Theme.MaterialComponents.DayNight">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorSecondary">@color/colorSecondary</item>
         <item name="colorPrimaryVariant">@color/colorPrimaryVariant</item>
@@ -25,22 +25,30 @@
 
         <item name="android:statusBarColor">?android:attr/colorBackground</item>
         <item name="android:windowLightStatusBar">?android:attr/isLightTheme</item>
+
+        <item name="drawableTint">?android:attr/textColorSecondary</item>
+        <item name="backgroundTint">?android:attr/textColorSecondary</item>
+
+        <item name="imageButtonStyle">@style/Widgets.ImageButton</item>
+    </style>
+
+    <style name="Theme.DeskClock" parent="parentTheme">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
     </style>
 
     <style name="Theme.DeskClock.ActionBar" parent="Theme.MaterialComponents.DayNight">
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorSecondary">@color/colorSecondary</item>
-        <item name="colorPrimaryVariant">@color/colorPrimaryVariant</item>
-        <item name="colorSecondaryVariant">@color/colorSecondaryVariant</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-
-        <item name="android:statusBarColor">?android:attr/colorBackground</item>
-        <item name="android:windowLightStatusBar">?android:attr/isLightTheme</item>
-        <item name="actionBarStyle">@style/Theme.DeskClock.Widgets.ActionBar</item>
+        <item name="actionBarStyle">@style/Widgets.ActionBar</item>
     </style>
 
-    <style name="Theme.DeskClock.Widgets.ActionBar" parent="Widget.MaterialComponents.ActionBar.Solid">
+    <!-- Widget themes -->
+
+    <style name="Widgets.ActionBar" parent="Widget.MaterialComponents.ActionBar.Solid">
         <item name="background">?android:attr/colorBackground</item>
+    </style>
+
+    <style name="Widgets.ImageButton" parent="Widget.MaterialComponents.TimePicker.ImageButton">
+        <item name="android:background">?attr/selectableItemBackgroundBorderless</item>
     </style>
 
 </resources>

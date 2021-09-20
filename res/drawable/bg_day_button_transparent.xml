@@ -29,7 +29,6 @@
         <path
             android:name="path"
             android:pathData="M 0.0,8.0 c -4.41999816895,0.0 -8.0,-3.58200073242 -8.0,-8.0 c 0.0,-4.41799926758 3.58000183105,-8.0 8.0,-8.0 c 4.41999816895,0.0 8.0,3.58200073242 8.0,8.0 c 0.0,4.41799926758 -3.58000183105,8.0 -8.0,8.0 Z"
-            android:fillAlpha="0"
-            android:fillColor="@android:color/white" />
+            android:fillColor="@android:color/transparent" />
     </group>
 </vector>

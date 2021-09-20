@@ -103,8 +103,4 @@
         <item name="android:textSize">36sp</item>
     </style>
 
-    <style name="Widget.ImageButton" parent="Widget.MaterialComponents.TimePicker.ImageButton">
-        <item name="android:background">?attr/selectableItemBackgroundBorderless</item>
-    </style>
-
 </resources>
