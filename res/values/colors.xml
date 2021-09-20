@@ -23,8 +23,4 @@
     <color name="colorSecondary">#03a9f4</color>
     <color name="colorSecondaryVariant">#007ac1</color>
 
-    <!-- Variable colors -->
-
-    <color name="defaultUIColor">?android:attr/textColorSecondary</color>
-
 </resources>

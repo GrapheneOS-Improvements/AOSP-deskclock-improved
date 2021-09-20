@@ -67,7 +67,7 @@
             android:name=".ringtone.RingtonePickerActivity"
             android:excludeFromRecents="true"
             android:taskAffinity=""
-            android:theme="@style/Theme.DeskClock.ActionBar" />
+            android:theme="@style/Theme.DeskClock.ActionBar.Tinted" />
 
         <activity
             android:name=".worldclock.CitySelectionActivity"

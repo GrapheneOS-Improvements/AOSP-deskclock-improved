@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   Copyright (C) 2016 The Android Open Source Project
 
   Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,8 +15,7 @@
   -->
 
 <!-- This parent FrameLayout provides a tap ripple effect over all children. -->
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -29,11 +27,11 @@
         android:layout_height="wrap_content"
         android:animateLayoutChanges="true"
         android:orientation="horizontal"
-        android:paddingBottom="8dp"
         android:paddingTop="8dp"
+        android:paddingBottom="8dp"
         tools:ignore="UselessParent">
 
-        <Space
+        <android.widget.Space
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="@integer/gutter_width_percent" />
@@ -61,8 +59,8 @@
                     android:id="@+id/ringtone_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingEnd="16dp"
                     android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
                     android:textSize="@dimen/alarm_text_font_size" />
 
             </LinearLayout>
@@ -75,13 +73,13 @@
                 android:layout_centerVertical="true"
                 android:importantForAccessibility="no"
                 android:scaleType="center"
-                android:tint="?attr/colorAccent"
                 android:visibility="gone"
-                app:srcCompat="@drawable/ic_checkmark" />
+                app:srcCompat="@drawable/ic_checkmark"
+                app:tint="?attr/colorAccent" />
 
         </RelativeLayout>
 
-        <Space
+        <android.widget.Space
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="@integer/gutter_width_percent" />
