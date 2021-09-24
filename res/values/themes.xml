@@ -14,7 +14,7 @@
   limitations under the License.
   -->
 
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
 
     <style name="parentTheme" parent="Theme.MaterialComponents.DayNight">
         <item name="colorPrimary">@color/colorPrimary</item>
@@ -29,6 +29,7 @@
         <item name="drawableTint">?android:attr/textColorSecondary</item>
         <item name="backgroundTint">?android:attr/textColorSecondary</item>
 
+        <item name="floatingActionButtonStyle">@style/Widgets.Fab</item>
         <item name="imageButtonStyle">@style/Widgets.ImageButton</item>
     </style>
 
@@ -56,8 +57,7 @@
         <item name="tint">?android:attr/textColorSecondary</item>
     </style>
 
-    <style name="Widgets.ImageView" parent="Widget.MaterialComponents.TextView">
-
+    <style name="Widgets.Fab" parent="Widget.MaterialComponents.FloatingActionButton">
     </style>
 
 </resources>
