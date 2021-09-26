@@ -23,4 +23,6 @@
     <color name="colorSecondary">#03a9f4</color>
     <color name="colorSecondaryVariant">#007ac1</color>
 
+    <color name="shadowColor">#99000000</color>
+
 </resources>

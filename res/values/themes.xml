@@ -26,10 +26,10 @@
         <item name="android:statusBarColor">?android:attr/colorBackground</item>
         <item name="android:windowLightStatusBar">?android:attr/isLightTheme</item>
 
+        <item name="android:outlineSpotShadowColor">@color/shadowColor</item>
         <item name="drawableTint">?android:attr/textColorSecondary</item>
         <item name="backgroundTint">?android:attr/textColorSecondary</item>
 
-        <item name="floatingActionButtonStyle">@style/Widgets.Fab</item>
         <item name="imageButtonStyle">@style/Widgets.ImageButton</item>
     </style>
 
@@ -55,9 +55,6 @@
     <style name="Widgets.ImageButton" parent="Widget.MaterialComponents.TimePicker.ImageButton">
         <item name="android:background">?attr/selectableItemBackgroundBorderless</item>
         <item name="tint">?android:attr/textColorSecondary</item>
-    </style>
-
-    <style name="Widgets.Fab" parent="Widget.MaterialComponents.FloatingActionButton">
     </style>
 
 </resources>

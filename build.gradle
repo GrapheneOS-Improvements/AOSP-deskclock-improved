@@ -1,12 +1,14 @@
 //Top-level buildscript information
 buildscript {
     ext.kotlin_version = '1.5.31'
+    ext.gradle_version = '7.0.2'
+
     repositories {
         mavenCentral()
         google()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.0.2'
+        classpath "com.android.tools.build:gradle:$gradle_version"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
@@ -18,7 +20,7 @@ android {
     compileSdkVersion 31
     defaultConfig {
         targetSdkVersion 31
-        minSdkVersion 27
+        minSdkVersion 28
     }
     sourceSets {
         main {
