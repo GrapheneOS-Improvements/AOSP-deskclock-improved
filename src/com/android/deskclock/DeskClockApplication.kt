@@ -27,6 +27,12 @@ import com.android.deskclock.controller.Controller
 import com.android.deskclock.data.DataModel
 import com.android.deskclock.events.LogEventTracker
 import com.android.deskclock.uidata.UiDataModel
+import android.os.StrictMode.VmPolicy
+
+import android.os.StrictMode
+
+
+
 
 class DeskClockApplication : Application() {
     override fun onCreate() {

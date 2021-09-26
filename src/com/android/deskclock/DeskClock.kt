@@ -19,20 +19,20 @@ package com.android.deskclock
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.animation.AnimatorSet
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.text.format.DateUtils
+import android.util.Log
 import android.view.KeyEvent
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Button
 import android.widget.ImageView
-import android.widget.TextView
 import androidx.annotation.StringRes
 import androidx.appcompat.app.ActionBar
-import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.viewpager.widget.ViewPager
 import androidx.viewpager.widget.ViewPager.OnPageChangeListener
@@ -53,9 +53,12 @@ import com.android.deskclock.provider.Alarm
 import com.android.deskclock.uidata.TabListener
 import com.android.deskclock.uidata.UiDataModel
 import com.android.deskclock.widget.toast.SnackbarManager
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.navigation.NavigationBarView
 
 import com.google.android.material.snackbar.Snackbar
-import com.google.android.material.tabs.TabLayout
+
+import androidx.appcompat.widget.AppCompatTextView
 
 /**
  * The main activity of the application which displays 4 different tabs contains alarms, world
@@ -116,7 +119,9 @@ class DeskClock : BaseActivity(), FabContainer, AlarmLabelDialogHandler {
     private lateinit var mFragmentTabPagerAdapter: FragmentTabPagerAdapter
 
     /** The container that stores the tab headers.  */
-    private lateinit var mTabLayout: TabLayout
+    private lateinit var mBottomNavView: BottomNavigationView
+
+    private lateinit var mTitleText: AppCompatTextView
 
     /** `true` when a settings change necessitates recreating this activity.  */
     private var mRecreateActivity = false
@@ -125,65 +130,41 @@ class DeskClock : BaseActivity(), FabContainer, AlarmLabelDialogHandler {
         super.onNewIntent(newIntent)
 
         // Fragments may query the latest intent for information, so update the intent.
-        setIntent(newIntent)
+        intent = newIntent
     }
 
-    protected override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.desk_clock)
         mSnackbarAnchor = findViewById(R.id.content)
 
-        // Configure the toolbar.
-        val toolbar: Toolbar = findViewById(R.id.toolbar) as Toolbar
-        setSupportActionBar(toolbar)
+        // Center the title text
+        supportActionBar?.setDisplayShowCustomEnabled(true)
+        supportActionBar?.setCustomView(R.layout.actionbar_centered)
 
-        val actionBar: ActionBar? = getSupportActionBar()
-        actionBar?.setDisplayShowTitleEnabled(false)
+        mTitleText = findViewById(R.id.application_title);
+        mTitleText.text = supportActionBar?.title
 
         // Configure the menu item controllers add behavior to the toolbar.
         mOptionsMenuManager.addMenuItemController(
-                NightModeMenuItemController(this), SettingsMenuItemController(this))
+            NightModeMenuItemController(this), SettingsMenuItemController(this)
+        )
         mOptionsMenuManager.addMenuItemController(
-                *MenuItemControllerFactory.buildMenuItemControllers(this))
-
-        // Inflate the menu during creation to avoid a double layout pass. Otherwise, the menu
-        // inflation occurs *after* the initial draw and a second layout pass adds in the menu.
-        onCreateOptionsMenu(toolbar.getMenu())
+            *MenuItemControllerFactory.buildMenuItemControllers(this)
+        )
 
         // Create the tabs that make up the user interface.
-        mTabLayout = findViewById(R.id.tabs) as TabLayout
+        mBottomNavView = findViewById(R.id.tabs)
+        mBottomNavView.labelVisibilityMode = NavigationBarView.LABEL_VISIBILITY_LABELED
         val tabCount: Int = UiDataModel.uiDataModel.tabCount
-        val showTabLabel: Boolean = getResources().getBoolean(R.bool.showTabLabel)
-        val showTabHorizontally: Boolean = getResources().getBoolean(R.bool.showTabHorizontally)
         for (i in 0 until tabCount) {
             val tabModel: UiDataModel.Tab = UiDataModel.uiDataModel.getTab(i)
             @StringRes val labelResId: Int = tabModel.labelResId
 
-            val tab: TabLayout.Tab = mTabLayout.newTab()
-                    .setTag(tabModel)
-                    .setIcon(tabModel.iconResId)
-                    .setContentDescription(labelResId)
-
-            if (showTabLabel) {
-                tab.setText(labelResId)
-                tab.setCustomView(R.layout.tab_item)
-
-                val text = tab.getCustomView()!!.findViewById(android.R.id.text1) as TextView
-                text.setTextColor(mTabLayout.getTabTextColors())
-
-                // Bind the icon to the TextView.
-                val icon: Drawable? = tab.getIcon()
-                if (showTabHorizontally) {
-                    // Remove the icon so it doesn't affect the minimum TabLayout height.
-                    tab.setIcon(null)
-                    text.setCompoundDrawablesRelativeWithIntrinsicBounds(icon, null, null, null)
-                } else {
-                    text.setCompoundDrawablesRelativeWithIntrinsicBounds(null, icon, null, null)
-                }
-            }
-
-            mTabLayout.addTab(tab)
+            mBottomNavView.menu.add(Menu.NONE, tabModel.labelResId, i, tabModel.labelResId)
+                .setIcon(tabModel.iconResId)
+                .setContentDescription(resources.getString(labelResId))
         }
 
         // Configure the buttons shared by the tabs.
@@ -224,30 +205,30 @@ class DeskClock : BaseActivity(), FabContainer, AlarmLabelDialogHandler {
         // Build the reusable animations that hide and show the fab and left/right buttons.
         // These may be used independently or be chained together.
         mHideAnimation
-                .setDuration(duration)
-                .play(hideFabAnimation)
-                .with(leftHideAnimation)
-                .with(rightHideAnimation)
+            .setDuration(duration)
+            .play(hideFabAnimation)
+            .with(leftHideAnimation)
+            .with(rightHideAnimation)
 
         mShowAnimation
-                .setDuration(duration)
-                .play(showFabAnimation)
-                .with(leftShowAnimation)
-                .with(rightShowAnimation)
+            .setDuration(duration)
+            .play(showFabAnimation)
+            .with(leftShowAnimation)
+            .with(rightShowAnimation)
 
         // Build the reusable animation that hides and shows only the fab.
         mUpdateFabOnlyAnimation
-                .setDuration(duration)
-                .play(showFabAnimation)
-                .after(hideFabAnimation)
+            .setDuration(duration)
+            .play(showFabAnimation)
+            .after(hideFabAnimation)
 
         // Build the reusable animation that hides and shows only the buttons.
         mUpdateButtonsOnlyAnimation
-                .setDuration(duration)
-                .play(leftShowAnimation)
-                .with(rightShowAnimation)
-                .after(leftHideAnimation)
-                .after(rightHideAnimation)
+            .setDuration(duration)
+            .play(leftShowAnimation)
+            .with(rightShowAnimation)
+            .after(leftHideAnimation)
+            .after(rightHideAnimation)
 
         // Customize the view pager.
         mFragmentTabPagerAdapter = FragmentTabPagerAdapter(this)
@@ -262,17 +243,16 @@ class DeskClock : BaseActivity(), FabContainer, AlarmLabelDialogHandler {
         mFragmentTabPager.setAdapter(mFragmentTabPagerAdapter)
 
         // Mirror changes made to the selected tab into UiDataModel.
-        mTabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
-            override fun onTabSelected(tab: TabLayout.Tab) {
-                UiDataModel.uiDataModel.selectedTab = tab.getTag() as UiDataModel.Tab
+        mBottomNavView.setOnItemSelectedListener {
+            for(i in 0 until UiDataModel.uiDataModel.tabCount){
+                val tab = UiDataModel.uiDataModel.getTab(i)
+                if(tab.labelResId == it.itemId) {
+                    UiDataModel.uiDataModel.selectedTab = tab
+                    break
+                }
             }
-
-            override fun onTabUnselected(tab: TabLayout.Tab) {
-            }
-
-            override fun onTabReselected(tab: TabLayout.Tab) {
-            }
-        })
+            true
+        }
 
         // Honor changes to the selected tab from outside entities.
         UiDataModel.uiDataModel.addTabListener(mTabChangeWatcher)
@@ -381,7 +361,8 @@ class DeskClock : BaseActivity(), FabContainer, AlarmLabelDialogHandler {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         // Recreate the activity if any settings have been changed
         if (requestCode == SettingsMenuItemController.REQUEST_CHANGE_SETTINGS &&
-                resultCode == RESULT_OK) {
+            resultCode == RESULT_OK
+        ) {
             mRecreateActivity = true
         }
     }
@@ -390,27 +371,26 @@ class DeskClock : BaseActivity(), FabContainer, AlarmLabelDialogHandler {
      * Configure the [.mFragmentTabPager] and [.mTabLayout] to display UiDataModel's
      * selected tab.
      */
+
+    @SuppressLint("ResourceType")
     private fun updateCurrentTab() {
         // Fetch the selected tab from the source of truth: UiDataModel.
         val selectedTab: UiDataModel.Tab = UiDataModel.uiDataModel.selectedTab
 
-        // Update the selected tab in the tablayout if it does not agree with UiDataModel.
-        for (i in 0 until mTabLayout.getTabCount()) {
-            val tab: TabLayout.Tab? = mTabLayout.getTabAt(i)
-            if (tab?.getTag() == selectedTab && !tab.isSelected()) {
-                tab.select()
-                break
-            }
-        }
+        mTitleText.text = resources.getString(selectedTab.labelResId)
+
+        if (mBottomNavView.selectedItemId != selectedTab.labelResId)
+            mBottomNavView.selectedItemId = selectedTab.labelResId
 
         // Update the selected fragment in the viewpager if it does not agree with UiDataModel.
         for (i in 0 until mFragmentTabPagerAdapter.count) {
             val fragment = mFragmentTabPagerAdapter.getDeskClockFragment(i)
-            if (fragment.isTabSelected && mFragmentTabPager.getCurrentItem() != i) {
-                mFragmentTabPager.setCurrentItem(i)
+            if (fragment.isTabSelected && mFragmentTabPager.currentItem != i) {
+                mFragmentTabPager.currentItem = i
                 break
             }
         }
+
     }
 
     /**
@@ -538,8 +518,10 @@ class DeskClock : BaseActivity(), FabContainer, AlarmLabelDialogHandler {
                 SnackbarManager.dismiss()
             } else {
                 mShowSilentSettingSnackbarRunnable = ShowSilentSettingSnackbarRunnable(after)
-                mSnackbarAnchor.postDelayed(mShowSilentSettingSnackbarRunnable,
-                        DateUtils.SECOND_IN_MILLIS)
+                mSnackbarAnchor.postDelayed(
+                    mShowSilentSettingSnackbarRunnable,
+                    DateUtils.SECOND_IN_MILLIS
+                )
             }
         }
     }
@@ -601,4 +583,5 @@ class DeskClock : BaseActivity(), FabContainer, AlarmLabelDialogHandler {
             }
         }
     }
+
 }

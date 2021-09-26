@@ -225,7 +225,8 @@
             android:name=".ScreensaverActivity"
             android:excludeFromRecents="true"
             android:resizeableActivity="false"
-            android:taskAffinity="" />
+            android:taskAffinity=""
+            android:theme="@style/Theme.DeskClock.ScreenSaver" />
 
         <activity
             android:name=".settings.ScreensaverSettingsActivity"

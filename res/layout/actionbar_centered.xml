@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView
+    android:layout_marginStart="40dp"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/application_title"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:text="Pog"
+    style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+    android:gravity="center"
+    />

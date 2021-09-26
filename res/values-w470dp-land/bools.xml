@@ -15,6 +15,5 @@
 -->
 
 <resources>
-    <bool name="showTabLabel">true</bool>
     <bool name="showTabHorizontally">true</bool>
 </resources>
