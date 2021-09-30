@@ -5,7 +5,6 @@
     android:id="@+id/application_title"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:text="Pog"
-    style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+    style="@style/Widgets.ActionBar.Text"
     android:gravity="center"
     />

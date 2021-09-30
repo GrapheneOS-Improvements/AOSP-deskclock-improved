@@ -23,7 +23,7 @@
     android:background="?attr/selectableItemBackground"
     android:paddingEnd="16dp"
     android:paddingStart="16dp"
-    android:translationZ="1dp"
+    android:translationZ="10dp"
     app:columnCount="5"
     app:columnOrderPreserved="false"
     app:rowCount="4">

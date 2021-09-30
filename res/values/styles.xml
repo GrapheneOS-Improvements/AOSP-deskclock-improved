@@ -38,20 +38,15 @@
         <item name="android:shadowDy">@dimen/widget_shadow_dy</item>
     </style>
 
-    <style name="display_time">
+    <style name="display_time" parent="TextAppearance.MaterialComponents.Body1">
         <item name="android:textSize">48sp</item>
         <item name="android:fontFamily">@font/lato_regular</item>
         <item name="android:fontFeatureSettings">tnum</item>
     </style>
 
-    <style name="world_clock_time">
-        <item name="android:textSize">48sp</item>
-        <item name="android:fontFamily">@font/opensans_light</item>
-    </style>
-
-    <style name="body">
-        <item name="android:textSize">14sp</item>
-        <item name="android:fontFamily">@font/opensans_medium</item>
+    <style name="body" parent="TextAppearance.MaterialComponents.Body1">
+        <item name="android:textSize">16sp</item>
+        <item name="android:fontFamily">@font/opensans_semibold</item>
     </style>
 
     <style name="big_thin">
@@ -80,13 +75,13 @@
 
     <style name="PrimaryLabelTextAppearance" parent="TextAppearance.MaterialComponents.Body1">
         <item name="android:textSize">@dimen/label_text_size</item>
-        <item name="android:fontFamily">@font/opensans_medium</item>
+        <item name="android:fontFamily">@font/opensans_semibold</item>
     </style>
 
     <style name="SecondaryLabelTextAppearance" parent="TextAppearance.MaterialComponents.Body1">
         <item name="android:textColor">?android:attr/textColorSecondary</item>
         <item name="android:textSize">@dimen/label_text_size</item>
-        <item name="android:fontFamily">@font/opensans_medium</item>
+        <item name="android:fontFamily">@font/opensans_semibold</item>
     </style>
 
     <style name="TextAppearance.Tab" parent="TextAppearance.AppCompat.Menu">

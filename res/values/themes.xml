@@ -17,7 +17,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
     <style name="parentTheme" parent="Theme.MaterialComponents.DayNight">
-        <item name="android:fontFamily">@font/opensans</item>
+        <item name="android:fontFamily">@font/opensans_regular</item>
 
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorSecondary">@color/colorSecondary</item>
@@ -28,7 +28,6 @@
         <item name="android:statusBarColor">?android:attr/colorBackground</item>
         <item name="android:windowLightStatusBar">?android:attr/isLightTheme</item>
 
-        <item name="android:outlineSpotShadowColor">@color/shadowColor</item>
         <item name="drawableTint">?android:attr/textColorSecondary</item>
 
         <item name="imageButtonStyle">@style/Widgets.ImageButton</item>
@@ -62,6 +61,10 @@
     <style name="Widgets.ImageButton" parent="Widget.MaterialComponents.TimePicker.ImageButton">
         <item name="android:background">?attr/selectableItemBackgroundBorderless</item>
         <item name="tint">?android:attr/textColorSecondary</item>
+    </style>
+
+    <style name="Widgets.ActionBar.Text" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:fontFamily">@font/opensans_semibold</item>
     </style>
 
 </resources>
