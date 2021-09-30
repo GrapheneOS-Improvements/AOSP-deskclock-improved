@@ -22,7 +22,7 @@
     </style>
 
     <style name="widget_medium_thin">
-        <item name="android:fontFamily">sans-serif-thin</item>
+        <item name="android:fontFamily">@font/opensans_thin</item>
         <item name="android:shadowRadius">@dimen/widget_shadow_radius</item>
         <item name="android:shadowDy">@dimen/widget_shadow_dy</item>
     </style>
@@ -39,33 +39,33 @@
     </style>
 
     <style name="display_time">
-        <item name="android:textSize">56sp</item>
-        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:textSize">48sp</item>
+        <item name="android:fontFamily">@font/lato_regular</item>
         <item name="android:fontFeatureSettings">tnum</item>
     </style>
 
     <style name="world_clock_time">
         <item name="android:textSize">48sp</item>
-        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:fontFamily">@font/opensans_light</item>
     </style>
 
     <style name="body">
         <item name="android:textSize">14sp</item>
-        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:fontFamily">@font/opensans_medium</item>
     </style>
 
     <style name="big_thin">
         <item name="android:textSize">@dimen/big_font_size</item>
-        <item name="android:fontFamily">sans-serif-thin</item>
+        <item name="android:fontFamily">@font/opensans_thin</item>
     </style>
 
     <style name="alarm_lockscreen_thin">
         <item name="android:textSize">@dimen/alarm_info_font_size</item>
-        <item name="android:fontFamily">sans-serif-thin</item>
+        <item name="android:fontFamily">@font/opensans_thin</item>
     </style>
 
     <style name="widget_big_thin" parent="big_thin">
-        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:fontFamily">@font/opensans_light</item>
         <item name="android:shadowRadius">@dimen/widget_shadow_radius</item>
         <item name="android:shadowDy">@dimen/widget_shadow_dy</item>
     </style>
@@ -80,23 +80,23 @@
 
     <style name="PrimaryLabelTextAppearance" parent="TextAppearance.MaterialComponents.Body1">
         <item name="android:textSize">@dimen/label_text_size</item>
-        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:fontFamily">@font/opensans_medium</item>
     </style>
 
     <style name="SecondaryLabelTextAppearance" parent="TextAppearance.MaterialComponents.Body1">
         <item name="android:textColor">?android:attr/textColorSecondary</item>
         <item name="android:textSize">@dimen/label_text_size</item>
-        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:fontFamily">@font/opensans_medium</item>
     </style>
 
-    <style name="TextAppearance.Tab" parent="TextAppearance.Design.Tab">
-        <item name="android:fontFamily">sans-serif-medium</item>
-        <item name="android:textSize">12sp</item>
+    <style name="TextAppearance.Tab" parent="TextAppearance.AppCompat.Menu">
+        <item name="android:fontFamily">@font/opensans_medium</item>
+        <item name="android:textSize">14sp</item>
     </style>
 
     <style name="Widget.Button.TimerSetupDigit" parent="Widget.MaterialComponents.Button.TextButton">
         <item name="android:background">?attr/selectableItemBackgroundBorderless</item>
-        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:fontFamily">@font/opensans_light</item>
         <item name="android:gravity">center</item>
         <item name="android:includeFontPadding">false</item>
         <item name="android:textColor">?android:attr/textColorPrimary</item>

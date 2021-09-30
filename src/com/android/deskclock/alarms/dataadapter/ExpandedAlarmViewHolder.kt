@@ -23,10 +23,9 @@ import android.animation.ObjectAnimator
 import android.animation.PropertyValuesHolder
 import android.content.Context
 import android.content.Context.VIBRATOR_SERVICE
-import android.graphics.Color
 import android.graphics.Rect
+import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
-import android.graphics.drawable.LayerDrawable
 import android.os.Vibrator
 import android.view.LayoutInflater
 import android.view.View
@@ -36,13 +35,11 @@ import android.widget.CheckBox
 import android.widget.CompoundButton
 import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 
 import com.android.deskclock.AnimatorUtils
 import com.android.deskclock.ItemAdapter.ItemViewHolder
 import com.android.deskclock.R
-import com.android.deskclock.ThemeUtils
 import com.android.deskclock.ThemeUtils.resolveColor
 import com.android.deskclock.Utils
 import com.android.deskclock.alarms.AlarmTimeClickHandler
@@ -67,9 +64,7 @@ class ExpandedAlarmViewHolder private constructor(itemView: View, private val mH
 
     init {
         val context: Context = itemView.getContext()
-        itemView.setBackground(LayerDrawable(arrayOf(
-                ThemeUtils.resolveDrawable(context, R.attr.selectableItemBackground)
-        )))
+        itemView.background = ColorDrawable(0xff2e2e2e.toInt())
 
         // Build button for each day.
         val inflater: LayoutInflater = LayoutInflater.from(context)
@@ -85,12 +80,6 @@ class ExpandedAlarmViewHolder private constructor(itemView: View, private val mH
             repeatDays.addView(dayButtonFrame)
             dayButtons[i] = dayButton
         }
-
-        // Cannot set in xml since we need compat functionality for API < 21
-        val labelIcon: Drawable? = Utils.getVectorDrawable(context, R.drawable.ic_label)
-        editLabel.setCompoundDrawablesRelativeWithIntrinsicBounds(labelIcon, null, null, null)
-        val deleteIcon: Drawable? = Utils.getVectorDrawable(context, R.drawable.ic_delete_small)
-        delete.setCompoundDrawablesRelativeWithIntrinsicBounds(deleteIcon, null, null, null)
 
         // Collapse handler
         itemView.setOnClickListener { _ ->

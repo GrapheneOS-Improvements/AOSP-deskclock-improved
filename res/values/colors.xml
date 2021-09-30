@@ -16,13 +16,33 @@
 
 <resources>
 
-    <color name="colorPrimary">#03a9f4</color>
-    <color name="colorPrimaryVariant">#0091ea</color>
-    <color name="colorPrimaryDark">#007ac1</color>
+    <color name="palette_blue100">#d2e3fc</color>
+    <color name="palette_blue200">#aecbfa</color>
+    <color name="palette_blue300">#8ab4f8</color>
+    <color name="palette_blue400">#669df6</color>
+    <color name="palette_blue600">#1a73e8</color>
+    <color name="palette_blue900">#174ea6</color>
+    <color name="palette_grey200">#e8eaed</color>
+    <color name="palette_grey300">#dadce0</color>
+    <color name="palette_grey400">#bdc1c6</color>
+    <color name="palette_grey50">#f8f9fa</color>
+    <color name="palette_grey500">#9aa0a6</color>
+    <color name="palette_grey600">#80868b</color>
+    <color name="palette_grey700">#5f6368</color>
+    <color name="palette_grey800">#3c4043</color>
+    <color name="palette_grey900">#202124</color>
+    <color name="palette_red200">#f6aea9</color>
+    <color name="palette_red300">#f28b82</color>
+    <color name="palette_white">#ffffff</color>
 
-    <color name="colorSecondary">#03a9f4</color>
-    <color name="colorSecondaryVariant">#007ac1</color>
+    <color name="colorPrimary">@color/palette_blue300</color>
+    <color name="colorPrimaryVariant">@color/palette_blue400</color>
+    <color name="colorPrimaryDark">@color/palette_grey900</color>
+
+    <color name="colorSecondary">@color/palette_blue300</color>
+    <color name="colorSecondaryVariant">@color/palette_grey900</color>
 
     <color name="shadowColor">#99000000</color>
+    <color name="transparent">#00000000</color>
 
 </resources>

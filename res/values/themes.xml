@@ -17,6 +17,8 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
     <style name="parentTheme" parent="Theme.MaterialComponents.DayNight">
+        <item name="android:fontFamily">@font/opensans</item>
+
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorSecondary">@color/colorSecondary</item>
         <item name="colorPrimaryVariant">@color/colorPrimaryVariant</item>
