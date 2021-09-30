@@ -69,7 +69,7 @@ class ExpandedAlarmViewHolder private constructor(
         val context: Context = itemView.getContext()
 
         if (context.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES) {
-            itemView.background = ColorDrawable(context.getColor(R.color.cardview_dark_background));
+            itemView.background = ColorDrawable(context.getColor(R.color.cardview_dark_background))
         } else {
             itemView.background =
                 ColorDrawable(context.getColor(R.color.cardview_light_background));
