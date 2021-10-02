@@ -47,13 +47,19 @@
         <item name="drawableTint">@android:color/white</item>
     </style>
 
-    <style name="Theme.DeskClock.ActionBar" parent="parentTheme">
-        <item name="actionBarStyle">@style/Widgets.ActionBar</item>
-    </style>
-
-    <style name="Theme.DeskClock.ActionBar.Tinted" parent="Theme.DeskClock.ActionBar">
+    <style name="Theme.DeskClock.Tinted" parent="Theme.DeskClock">
         <item name="tint">?android:attr/textColorSecondary</item>
     </style>
+
+    <style name="Theme.DeskClock.NoActionBar" parent="parentTheme">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.DeskClock.NoActionBar.Tinted" parent="Theme.DeskClock.NoActionBar">
+        <item name="tint">?android:attr/colorPrimary</item>
+    </style>
+
 
     <!-- Widget themes -->
 

@@ -60,7 +60,7 @@ class CircleView @JvmOverloads constructor(
         mCenterY = a.getDimension(R.styleable.CircleView_centerY, 0.0f)
         radius = a.getDimension(R.styleable.CircleView_radius, 0.0f)
 
-        mCirclePaint.color = a.getColor(R.styleable.CircleView_fillColor, resolveColor(context, R.attr.icon))
+        mCirclePaint.color = resolveColor(context, R.attr.drawableTint)
 
         a.recycle()
     }

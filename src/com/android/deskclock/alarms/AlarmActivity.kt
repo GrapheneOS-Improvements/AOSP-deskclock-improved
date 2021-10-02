@@ -65,6 +65,7 @@ import com.android.deskclock.provider.AlarmInstance
 import com.android.deskclock.provider.ClockContract.InstancesColumns
 import com.android.deskclock.R
 import com.android.deskclock.ThemeUtils
+import com.android.deskclock.ThemeUtils.resolveColor
 import com.android.deskclock.Utils
 import com.android.deskclock.widget.CircleView
 
@@ -105,7 +106,6 @@ class AlarmActivity : BaseActivity(), View.OnClickListener, View.OnTouchListener
     private var mAlarmInstance: AlarmInstance? = null
     private var mAlarmHandled = false
     private var mVolumeBehavior: AlarmVolumeButtonBehavior? = null
-    private var mCurrentHourColor = 0
     private var mReceiverRegistered = false
     /** Whether the AlarmService is currently bound  */
     private var mServiceBound = false
@@ -196,16 +196,16 @@ class AlarmActivity : BaseActivity(), View.OnClickListener, View.OnTouchListener
         titleView.setText(mAlarmInstance!!.getLabelOrDefault(this))
         Utils.setTimeFormat(digitalClock, false)
 
-        mCurrentHourColor = ThemeUtils.resolveColor(this, android.R.attr.windowBackground)
-        getWindow().setBackgroundDrawable(ColorDrawable(mCurrentHourColor))
+        val primaryTextColor = resolveColor(window.context, android.R.attr.textColorPrimary)
+        val secondaryTextColor = resolveColor(window.context, android.R.attr.textColorSecondary)
 
         mAlarmButton.setOnTouchListener(this)
         mSnoozeButton.setOnClickListener(this)
         mDismissButton.setOnClickListener(this)
 
         mAlarmAnimator = AnimatorUtils.getScaleAnimator(mAlarmButton, 1.0f, 0.0f)
-        mSnoozeAnimator = getButtonAnimator(mSnoozeButton, Color.WHITE)
-        mDismissAnimator = getButtonAnimator(mDismissButton, mCurrentHourColor)
+        mSnoozeAnimator = getButtonAnimator(mSnoozeButton, secondaryTextColor, primaryTextColor)
+        mDismissAnimator = getButtonAnimator(mDismissButton, secondaryTextColor, primaryTextColor)
         mPulseAnimator = ObjectAnimator.ofPropertyValuesHolder(pulseView,
                 PropertyValuesHolder.ofFloat(CircleView.RADIUS, 0.0f, pulseView.radius),
                 PropertyValuesHolder.ofObject(CircleView.FILL_COLOR, AnimatorUtils.ARGB_EVALUATOR,
@@ -514,9 +514,12 @@ class AlarmActivity : BaseActivity(), View.OnClickListener, View.OnTouchListener
 
         setAnimatedFractions(0.0f /* snoozeFraction */, 1.0f /* dismissFraction */)
 
+        val floodColor = resolveColor(window.context, android.R.attr.textColorSecondaryInverse)
+        val windowBackgroundColor = resolveColor(window.context, android.R.attr.windowBackground)
+
         getAlertAnimator(mDismissButton, R.string.alarm_alert_off_text, null /* infoText */,
                 getString(R.string.alarm_alert_off_text) /* accessibilityText */,
-                Color.WHITE, mCurrentHourColor).start()
+                floodColor, windowBackgroundColor).start()
 
         AlarmStateManager.deleteInstanceAndUpdateParent(this, mAlarmInstance!!)
 
@@ -558,7 +561,7 @@ class AlarmActivity : BaseActivity(), View.OnClickListener, View.OnTouchListener
         return Math.max(Math.min((x - x0) / (x1 - x0), 1.0f), 0.0f)
     }
 
-    private fun getButtonAnimator(button: ImageView?, tintColor: Int): ValueAnimator {
+    private fun getButtonAnimator(button: ImageView?, startColor: Int, tintColor: Int): ValueAnimator {
         return ObjectAnimator.ofPropertyValuesHolder(button,
                 PropertyValuesHolder.ofFloat(View.SCALE_X, BUTTON_SCALE_DEFAULT, 1.0f),
                 PropertyValuesHolder.ofFloat(View.SCALE_Y, BUTTON_SCALE_DEFAULT, 1.0f),
@@ -566,7 +569,7 @@ class AlarmActivity : BaseActivity(), View.OnClickListener, View.OnTouchListener
                 PropertyValuesHolder.ofInt(AnimatorUtils.DRAWABLE_ALPHA,
                         BUTTON_DRAWABLE_ALPHA_DEFAULT, 255),
                 PropertyValuesHolder.ofObject(AnimatorUtils.DRAWABLE_TINT,
-                        AnimatorUtils.ARGB_EVALUATOR, Color.WHITE, tintColor))
+                        AnimatorUtils.ARGB_EVALUATOR, startColor, tintColor))
     }
 
     private fun getAlarmBounceAnimator(translationX: Float, hintResId: Int): ValueAnimator {

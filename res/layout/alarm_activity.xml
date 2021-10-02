@@ -109,7 +109,7 @@
             app:layout_column="1"
             app:layout_columnWeight="1"
             app:layout_gravity="center"
-            app:srcCompat="@drawable/ic_fab_alarm" />
+            app:srcCompat="@drawable/ic_fab_alarm"/>
 
         <TextView
             android:id="@+id/hint"

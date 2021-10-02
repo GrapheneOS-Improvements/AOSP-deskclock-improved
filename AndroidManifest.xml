@@ -67,7 +67,7 @@
             android:name=".ringtone.RingtonePickerActivity"
             android:excludeFromRecents="true"
             android:taskAffinity=""
-            android:theme="@style/Theme.DeskClock.ActionBar.Tinted" />
+            android:theme="@style/Theme.DeskClock.Tinted" />
 
         <activity
             android:name=".worldclock.CitySelectionActivity"
@@ -75,7 +75,7 @@
             android:label="@string/cities_activity_title"
             android:parentActivityName=".DeskClock"
             android:taskAffinity=""
-            android:theme="@style/Theme.DeskClock.ActionBar" />
+            android:theme="@style/Theme.DeskClock" />
 
         <activity
             android:name=".settings.SettingsActivity"
@@ -83,7 +83,7 @@
             android:label="@string/settings"
             android:parentActivityName=".DeskClock"
             android:taskAffinity=""
-            android:theme="@style/Theme.DeskClock.ActionBar" />
+            android:theme="@style/Theme.DeskClock" />
 
         <activity
             android:name=".HandleShortcuts"
@@ -144,6 +144,7 @@
             android:showOnLockScreen="true"
 	        android:showWhenLocked="true"
             android:taskAffinity=""
+            android:theme="@style/Theme.DeskClock.NoActionBar.Tinted"
             android:windowSoftInputMode="stateAlwaysHidden" />
 
         <activity
@@ -191,6 +192,8 @@
             android:launchMode="singleInstance"
             android:resizeableActivity="false"
             android:showOnLockScreen="true"
+            android:showWhenLocked="true"
+            android:theme="@style/Theme.DeskClock.NoActionBar.Tinted"
             android:taskAffinity="" />
 
         <!-- Legacy broadcast receiver that honors old scheduled timers across app upgrade. -->
@@ -233,7 +236,7 @@
             android:excludeFromRecents="true"
             android:label="@string/screensaver_settings"
             android:taskAffinity=""
-            android:theme="@style/Theme.DeskClock.ActionBar" />
+            android:theme="@style/Theme.DeskClock" />
 
         <service
             android:name=".Screensaver"
