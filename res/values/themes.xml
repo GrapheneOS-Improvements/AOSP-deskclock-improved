@@ -17,8 +17,8 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
     <style name="parentTheme" parent="Theme.MaterialComponents.DayNight">
-        <item name="android:fontFamily">@font/opensans_regular</item>
-        <item name="fontFamily">@font/opensans_regular</item>
+        <item name="android:fontFamily">@font/opensans_medium</item>
+        <item name="fontFamily">@font/opensans_medium</item>
 
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorSecondary">@color/colorSecondary</item>
@@ -39,10 +39,12 @@
     </style>
 
     <style name="Theme.DeskClock.ScreenSaver" parent="parentTheme">
+        <item name="isLightTheme">false</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="android:colorBackground">@android:color/black</item>
-        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textColorPrimary">@android:color/white</item>
+        <item name="drawableTint">@android:color/white</item>
     </style>
 
     <style name="Theme.DeskClock.ActionBar" parent="parentTheme">

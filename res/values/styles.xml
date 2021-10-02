@@ -20,11 +20,8 @@
         <item name="android:textSize">@dimen/no_alarm_font_size</item>
     </style>
 
-    <style name="label">
+    <style name="widget_label">
         <item name="android:textSize">@dimen/label_font_size</item>
-    </style>
-
-    <style name="widget_label" parent="label">
         <item name="android:textColor">?android:attr/textColorPrimaryInverse</item>
         <item name="android:textAllCaps">true</item>
         <item name="android:letterSpacing">0.15</item>
@@ -40,8 +37,9 @@
     </style>
 
     <style name="body" parent="TextAppearance.MaterialComponents.Body1">
-        <item name="android:fontFamily">@font/opensans_medium</item>
-        <item name="fontFamily">@font/opensans_medium</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">?android:fontFamily</item>
+        <item name="fontFamily">?fontFamily</item>
     </style>
 
     <style name="big_thin" parent="TextAppearance.MaterialComponents.Body1">
@@ -75,7 +73,7 @@
         <item name="android:textStyle">bold</item>
     </style>
 
-    <style name="PrimaryLabelTextAppearance" parent="TextAppearance.MaterialComponents.Body1">
+    <style name="PrimaryLabelTextAppearance" parent="body">
         <item name="android:textSize">@dimen/label_text_size</item>
         <item name="android:fontFamily">@font/opensans_semibold</item>
     </style>

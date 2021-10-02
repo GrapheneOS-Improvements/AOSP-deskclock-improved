@@ -20,6 +20,7 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
+import android.content.res.ColorStateList
 import android.text.format.DateFormat
 import android.text.format.DateUtils
 import android.util.AttributeSet
@@ -27,6 +28,7 @@ import android.view.View
 import android.widget.FrameLayout
 import android.widget.ImageView
 import androidx.appcompat.widget.AppCompatImageView
+import com.android.deskclock.ThemeUtils.resolveColor
 
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -68,7 +70,7 @@ class AnalogClock @JvmOverloads constructor(
 
     private var mTime = Calendar.getInstance()
     private val mDescFormat =
-            (DateFormat.getTimeFormat(context) as SimpleDateFormat).toLocalizedPattern()
+        (DateFormat.getTimeFormat(context) as SimpleDateFormat).toLocalizedPattern()
     private var mTimeZone: TimeZone? = null
     private var mEnableSeconds = true
 
@@ -77,21 +79,33 @@ class AnalogClock @JvmOverloads constructor(
         // sharing their size characteristics with the (smaller) world cities analog clocks.
         val dial: ImageView = AppCompatImageView(context)
         dial.setImageResource(R.drawable.clock_analog_dial)
+        dial.imageTintList = ColorStateList.valueOf(
+            resolveColor(context, R.attr.drawableTint)
+        )
         dial.drawable.mutate()
         addView(dial)
 
         mHourHand = AppCompatImageView(context)
         mHourHand.setImageResource(R.drawable.clock_analog_hour)
+        mHourHand.imageTintList = ColorStateList.valueOf(
+            resolveColor(context, R.attr.drawableTint)
+        )
         mHourHand.drawable.mutate()
         addView(mHourHand)
 
         mMinuteHand = AppCompatImageView(context)
         mMinuteHand.setImageResource(R.drawable.clock_analog_minute)
+        mMinuteHand.imageTintList = ColorStateList.valueOf(
+            resolveColor(context, R.attr.drawableTint)
+        )
         mMinuteHand.drawable.mutate()
         addView(mMinuteHand)
 
         mSecondHand = AppCompatImageView(context)
         mSecondHand.setImageResource(R.drawable.clock_analog_second)
+        mSecondHand.imageTintList = ColorStateList.valueOf(
+            resolveColor(context, R.attr.colorSecondary)
+        )
         mSecondHand.drawable.mutate()
         addView(mSecondHand)
     }
