@@ -36,6 +36,7 @@
 
     <style name="Theme.DeskClock" parent="parentTheme">
         <item name="actionBarStyle">@style/Widgets.ActionBar</item>
+        <item name="borderlessButtonStyle">@style/Widgets.BorderlessButton</item>
     </style>
 
     <style name="Theme.DeskClock.ScreenSaver" parent="parentTheme">
@@ -70,6 +71,11 @@
     <style name="Widgets.ImageButton" parent="Widget.MaterialComponents.TimePicker.ImageButton">
         <item name="android:background">?attr/selectableItemBackgroundBorderless</item>
         <item name="tint">?android:attr/textColorSecondary</item>
+    </style>
+
+    <style name="Widgets.BorderlessButton" parent="Widget.MaterialComponents.Button.TextButton">
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
+        <item name="iconTint">?android:attr/textColorSecondary</item>
     </style>
 
     <style name="Widgets.ActionBar.Text" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
